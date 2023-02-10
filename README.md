@@ -60,7 +60,30 @@ $ cd /opt/seafile/
 [audran@seafile ~]$ sudo firewall-cmd --add-port=3306/tcp --permanent
 
 [audran@seafile ~]$ sudo firewall-cmd --reload
+```
+```bash
+$ sudo mysql_secure_installation
+```
+```bash
+[audran@seafile ~]$ mysql -u root -p
 
+MariaDB [(none)]> create database `ccnet_db` character set = 'utf8';
+
+MariaDB [(none)]> create database `seafile_db` character set = 'utf8';
+
+MariaDB [(none)]> create database `seahub_db` character set = 'utf8';
+
+MariaDB [(none)]> create user 'seafile'@'10.104.1.20' identified by 'seafile';
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON `ccnet_db`.* to `seafile`@10.104.1.20;
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON `seafile_db`.* to `seafile`@10.104.1.20;
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON `seahub_db`.* to `seafile`@10.104.1.20;
+
+MariaDB [(none)]> flush privileges;
+
+MariaDB [(none)]> exit
 ```
 
 
