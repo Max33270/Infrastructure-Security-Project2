@@ -56,6 +56,11 @@ $ cd /opt/seafile/
 [audran@seafile seafile]$ sudo systemctl start mariadb
 
 [audran@seafile seafile]$ sudo systemctl enable mariadb
+
+[audran@seafile ~]$ sudo firewall-cmd --add-port=3306/tcp --permanent
+
+[audran@seafile ~]$ sudo firewall-cmd --reload
+
 ```
 
 
