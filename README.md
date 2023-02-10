@@ -22,7 +22,7 @@ $ sudo dnf install -y wget
 [audran@seafile ~]$ sudo dnf install -y mariadb-server
 ```
 
-## 2. Configuration
+## 2. Configuration Seafile
 
 ```bash
 [audran@seafile ~]$ sudo mkdir /opt/seafile
@@ -32,4 +32,35 @@ $ sudo dnf install -y wget
 [audran@seafile seafile]$ sudo adduser seafile
 
 [audran@seafile seafile]$ sudo chown -R seafile: /opt/seafile/
+```
+
+```bash
+$ cd 
+
+$ cd /tmp
+
+$ wget https://s3.eu-central-1.amazonaws.com/download.seadrive.org/seafile-server_9.0.10_x86-64.tar.gz
+
+$ sudo dnf install -y tar && tar xvzf seafile-server_9.0.10_x86-64.tar.gz  && sudo dnf remove -y tar
+
+$ cd seafile-server-9.0.10/
+
+$ cat seafile-server_9.0.10_x86-64.tar.gz | md5sum
+
+$ sudo mv seafile-server-9.0.10 /opt/seafile/
+
+$ cd /opt/seafile/ 
+```
+
+```bash
+[audran@seafile seafile]$ sudo systemctl start mariadb
+
+[audran@seafile seafile]$ sudo systemctl enable mariadb
+```
+
+
+## 3. Other 
+    
+```bash
+cffi==1.14.0 ??????????
 ```
