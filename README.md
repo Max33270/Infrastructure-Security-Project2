@@ -15,12 +15,19 @@ $ sudo dnf install python3-pip
 
 $ sudo dnf install -y wget
 
+$ sudo dnf install -y gcc
+
+$ sudo dnf install -y python3-devel
+
 $ sudo dnf install -y tar && tar xvzf seafile-server_9.0.10_x86-64.tar.gz  && sudo dnf remove -y tar
 
 $ pip3 install --upgrade pip
 
 $ sudo pip3 install --timeout=3600 django==3.2.* Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \ django-pylibmc django-simple-captcha python3-ldap pycryptodome==3.12.0 cffi==1.14.0 lxml
+
+$ sudo -u seafile pip install mysqlclient --user
 ```
+
 
 ### 2. Configuration
 
@@ -150,6 +157,45 @@ When problems occur, Refer to
 
 for information.
 ```
+
+```bash
+$ sudo -u seafile bash seahub.sh start
+
+LC_ALL is not set in ENV, set to en_US.UTF-8
+Starting seahub at port 8000 ...
+
+Seahub is started
+
+Done.
+```
+
+```bash
+$ sudo -u seafile nano /opt/seafile/conf/gunicorn.conf.py
+
+Bind = '0.0.0.0:8080'
+
+$ sudo -u seafile nano ./seahub.sh restart
+
+$ sudo firewall-cmd --add-port=8080/tcp --permanent
+$ sudo firewall-cmd --reload
+```
+
+```bash
+$ sudo nano /opt/seafile/conf/ccnet.conf
+
+# Add the following lines : 
+[General]
+SERVICE_URL = http://seafile.linux.b2:8000
+SERVICE_URL = https://seafile.linux.b2:
+
+$ sudo nano /opt/seafile/conf/seahub_settings.py
+
+# -*- coding: utf-8 -*-
+SECRET_KEY = "b'c8t+tm!0+9vid5=t+b=&9qm63fntffy!djqm@0tj5j!t%((!&g'"
+SERVICE_URL = "http://10.104.1.20/"
+(Ajouter cette ligne)
+FILE_SERVER_ROOT = 'https://seafile.linux.b2/seafhttp'
+````
 
 ## 🖥 Seafile Database 
 
