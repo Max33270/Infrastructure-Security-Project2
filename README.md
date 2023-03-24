@@ -174,7 +174,7 @@ $ sudo -u seafile nano /opt/seafile/conf/gunicorn.conf.py
 
 Bind = '0.0.0.0:8080'
 
-$ sudo -u seafile nano ./seahub.sh restart
+$ sudo -u seafile ./seahub.sh restart
 
 $ sudo firewall-cmd --add-port=8080/tcp --permanent
 $ sudo firewall-cmd --reload
