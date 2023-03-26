@@ -371,7 +371,7 @@ $ sudo mv domain.crt /etc/pki/tls/certs/
 $ sudo mv domain.key /etc/pki/tls/private/
 $ cd /etc/nginx/conf.d/
 $ sudo nano seafile_proxy.conf
-```
+
 log_format seafileformat '$http_x_forwarded_for $remote_addr [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $upstream_response_time';
 
 server {
@@ -456,9 +456,8 @@ server {
         root /var/www/seafile/opt/seafile/seafile-server-latest/seahub;
     }
 }
-```bash
-
 ```
+```bash
 $ sudo systemctl restart nginx
 $ sudo firewall-cmd --add-port=443/tcp --permanent
 $ sudo firewall-cmd --reload
