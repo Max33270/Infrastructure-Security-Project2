@@ -9,41 +9,20 @@ sudo dnf install python39 -y
 sudo dnf install python3-pip -y
 sudo dnf install wget -y
 sudo dnf install -y tar && tar xvzf seafile-server_9.0.10_x86-64.tar.gz  && sudo dnf remove -y tar
-pip3 install --upgrade pip
-sudo pip3 install --timeout=3600 django==3.2.* Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \ django-pylibmc django-simple-captcha python3-ldap pycryptodome==3.12.0 cffi==1.14.0 lxml
-#sudo dnf install -y git 
+pip3 install --upgrade pip -y
+sudo pip3 install --timeout=3600 django==3.2.* Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \ django-pylibmc django-simple-captcha python3-ldap pycryptodome==3.12.0 
+sudo dnf install -y git 
 sudo dnf install -y mariadb
 sudo dnf install -y mariadb-server
 sudo dnf install -y mariadb-devel memcached libmemcached-awesome-devel
 sudo dnf install -y gcc
 sudo dnf install -y python3-devel
-sudo -u seafile pip install mysqlclient --user
+sudo -u seafile pip install mysqlclient --user 
 sudo dnf install python3-devel python3-pip python3-setuptools python3-ldap python3-urllib3 python3-mysqldb -y
 sudo dnf install -y gcc
 sudo dnf install -y nginx
 sudo dnf install -y zip
 sudo dnf install -y openssl 
-
-# Start MariaDB service and enable it to start at boot time
-sudo systemctl start mariadb
-sudo systemctl enable mariadb
-sudo firewall-cmd --add-port=3306/tcp --permanent
-sudo firewall-cmd --reload
-
-# Secure MariaDB installation
-sudo mysql_secure_installation
-
-# Create database and user for Seafile
-sudo mysql -u root -p
-CREATE DATABASE IF NOT EXISTS `ccnet-db` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-CREATE DATABASE IF NOT EXISTS `seafile-db` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-CREATE DATABASE IF NOT EXISTS `seahub-db` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-CREATE USER 'seafile'@'10.104.1.20' IDENTIFIED BY 'seafile';
-GRANT ALL PRIVILEGES ON `ccnet-db`.* TO 'seafile'@'10.104.1.20';
-GRANT ALL PRIVILEGES ON `seafile-db`.* TO 'seafile'@'10.104.1.20';
-GRANT ALL PRIVILEGES ON `seahub-db`.* TO 'seafile'@'10.104.1.20';
-FLUSH PRIVILEGES;
-EXIT;
 
 # Create directory and user for Seafile
 sudo mkdir /opt/seafile
@@ -74,7 +53,7 @@ EOF
 
 # Run Seafile setup script
 cd /opt/seafile/
-sudo -u seafile ./setup-seafile-mysql.sh < filename.txt
+sudo -u seafile ./setup-seafile-mysql.sh < myfile.txt
 
 # Start Seafile and Seahub
 sudo -u seafile bash seahub.sh start
