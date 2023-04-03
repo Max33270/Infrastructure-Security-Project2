@@ -11,7 +11,7 @@ sudo dnf install wget -y
 sudo dnf install -y tar && tar xvzf seafile-server_9.0.10_x86-64.tar.gz  && sudo dnf remove -y tar
 pip3 install --upgrade pip
 sudo pip3 install --timeout=3600 django==3.2.* Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \ django-pylibmc django-simple-captcha python3-ldap pycryptodome==3.12.0 cffi==1.14.0 lxml
-sudo dnf install -y git 
+#sudo dnf install -y git 
 sudo dnf install -y mariadb
 sudo dnf install -y mariadb-server
 sudo dnf install -y mariadb-devel memcached libmemcached-awesome-devel
@@ -58,9 +58,8 @@ wget https://s3.eu-central-1.amazonaws.com/download.seadrive.org/seafile-server_
 cd seafile-server-9.0.10/
 sudo mv seafile-server-9.0.10 /opt/seafile/
 
-# Run Seafile setup script
-cd /opt/seafile/
-sudo -u seafile ./setup-seafile-mysql.sh << EOF
+# Add the following lines to myfile.txt and save it
+cat << EOF >> myfile.txt
 10.104.1.20
 8082
 10.104.1.21
@@ -71,8 +70,11 @@ azerty
 ccnet_db
 seafile_db
 seahub_db
-
 EOF
+
+# Run Seafile setup script
+cd /opt/seafile/
+sudo -u seafile ./setup-seafile-mysql.sh < filename.txt
 
 # Start Seafile and Seahub
 sudo -u seafile bash seahub.sh start
@@ -105,7 +107,7 @@ sudo firewall-cmd --reload
 # Nginx Config
 cd /etc/nginx/conf.d/
 
-sudo nano seafile_proxy.conf <<EOL
+sudo nano seafile_proxy.conf <<EOL 
 log_format seafileformat '$http_x_forwarded_for $remote_addr [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $upstream_response_time';
 
 server {
