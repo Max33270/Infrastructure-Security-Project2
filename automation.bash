@@ -18,9 +18,9 @@ sudo dnf install -y gcc
 sudo dnf install -y python3-devel
 sudo -u seafile pip install mysqlclient --user 
 sudo dnf install python3-devel python3-pip python3-setuptools python3-ldap python3-urllib3 python3-mysqldb -y
-sudo dnf install -y gcc
-sudo dnf install -y nginx
-sudo dnf install -y zip
+sudo dnf install -y gcc 
+sudo dnf install -y nginx 
+sudo dnf install -y zip 
 sudo dnf install -y openssl 
 
 # Create directory and user for Seafile
@@ -35,7 +35,7 @@ cd /tmp
 wget https://s3.eu-central-1.amazonaws.com/download.seadrive.org/seafile-server_9.0.10_x86-64.tar.gz
 sudo dnf install -y tar && tar xvzf seafile-server_9.0.10_x86-64.tar.gz && sudo dnf remove -y tar
 cd seafile-server-9.0.10/
-sudo mv seafile-server-9.0.10 /opt/seafile/
+sudo mv seafile-server-9.0.10 /opt/seafile/ 
 
 # Start Seafile and Seahub
 sudo -u seafile bash seahub.sh start
@@ -43,7 +43,7 @@ sudo -u seafile sed -i "s/^Bind.*/Bind = '0.0.0.0:8080'/" /opt/seafile/conf/guni
 sudo -u seafile ./seahub.sh restart
 
 # Firewall 
-sudo firewall-cmd --add-port=8080/tcp --permanent
+sudo firewall-cmd --add-port=8080/tcp --permanent 
 sudo firewall-cmd --reload
 
 # Add ccnet.conf, seahub_settings.py, seafile.conf
@@ -51,7 +51,7 @@ cd
 git clone "https://github.com/Max33270/Projet-Infra-SI" 
 sudo -u seafile mv Projet-Infra-SI/ccnet.conf /opt/seafile/conf/ccnet.conf
 sudo -u seafile mv Projet-Infra-SI/seahub_settings.py /opt/seafile/seafile-server-latest/seahub/seahub/seahub_settings.py
-sudo -u seafile mv Projet-Infra-SI/seafile.conf /opt/seafile/conf/seafile.conf
+sudo -u seafile mv Projet-Infra-SI/seafile.conf /opt/seafile/conf/seafile.conf 
 
 # Zip static files
 cd
