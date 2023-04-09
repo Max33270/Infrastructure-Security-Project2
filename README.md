@@ -207,6 +207,9 @@ $ sh linpeas.sh
 ```
 $ sudo systemctl start netdata
 $ sudo systemctl enable netdata
+$ sudo ss -alnpt
+LISTEN         0               4096                           0.0.0.0:19999                        0.0.0.0:*
+users:(("netdata",pid=4096,fd=49))
 $ sudo firewall-cmd --add-port=19999/tcp --permanent
 $ sudo firewall-cmd --reload
 ```
