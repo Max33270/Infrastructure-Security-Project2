@@ -200,10 +200,7 @@ zip -r seafile_static /opt/seafile/seafile-server-latest/seahub/
 ```
 
 ```bash
-$ mkdir linpeas
-$ cd linpeas/
 $ curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh | sh
-$ sh linpeas.sh
 ```
 
 ```bash
@@ -251,6 +248,7 @@ info: CPU utilization of users on the system itself.
 
 ```bash
 $ sudo systemctl restart netdata
+$ cd /opt/seafile/seafile-server-9.0.10/ 
 $ sudo -u seafile ./seafile.sh restart
 $ sudo -u seafile ./seahub.sh restart
 ```
