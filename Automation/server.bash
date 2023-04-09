@@ -48,10 +48,20 @@ sudo firewall-cmd --reload
 
 # Add ccnet.conf, seahub_settings.py, seafile.conf
 cd
-git clone "https://github.com/Max33270/Projet-Infra-SI" 
-sudo -u seafile mv Projet-Infra-SI/ccnet.conf /opt/seafile/conf/ccnet.conf
-sudo -u seafile mv Projet-Infra-SI/seahub_settings.py /opt/seafile/seafile-server-latest/seahub/seahub/seahub_settings.py
-sudo -u seafile mv Projet-Infra-SI/seafile.conf /opt/seafile/conf/seafile.conf 
+git clone "https://github.com/Max33270/Projet-Infra-SI"
+if [ -f /opt/seafile/conf/ccnet.conf ]; then
+    sudo rm /opt/seafile/conf/ccnet.conf
+fi
+sudo -u seafile cp Projet-Infra-SI/ccnet.conf /opt/seafile/conf/ccnet.conf
+if [ -f /opt/seafile/seafile-server-latest/seahub/seahub/seahub_settings.py ]; then
+    sudo rm /opt/seafile/seafile-server-latest/seahub/seahub/seahub_settings.py
+fi
+sudo -u seafile cp Projet-Infra-SI/seahub_settings.py /opt/seafile/seafile-server-latest/seahub/seahub/seahub_settings.py
+if [ -f /opt/seafile/conf/seafile.conf ]; then
+    sudo rm /opt/seafile/conf/seafile.conf
+fi
+sudo -u seafile cp Projet-Infra-SI/seafile.conf /opt/seafile/conf/seafile.conf
+
 
 # Zip static files
 cd
