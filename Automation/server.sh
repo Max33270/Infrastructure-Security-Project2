@@ -9,14 +9,14 @@ sudo dnf install python39 -y
 sudo dnf install python3-pip -y
 sudo dnf install wget -y
 pip3 install --upgrade pip -y
-sudo pip3 install --timeout=3600 django==3.2.* Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \ django-pylibmc django-simple-captcha python3-ldap pycryptodome==3.12.0 
+sudo pip3 install --timeout=3600 django==3.2.* Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \ django-pylibmc django-simple-captcha python3-ldap pycryptodome==3.12.0 -y 
 sudo dnf install -y git 
 sudo dnf install -y mariadb
 sudo dnf install -y mariadb-server
 sudo dnf install -y mariadb-devel memcached libmemcached-awesome-devel
 sudo dnf install -y gcc
 sudo dnf install -y python3-devel
-sudo -u seafile pip install mysqlclient --user 
+sudo -u seafile pip install mysqlclient --user -y
 sudo dnf install python3-devel python3-pip python3-setuptools python3-ldap python3-urllib3 python3-mysqldb -y
 sudo dnf install -y gcc 
 sudo dnf install -y nginx 
