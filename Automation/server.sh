@@ -47,8 +47,6 @@ sudo firewall-cmd --add-port=8080/tcp --permanent
 sudo firewall-cmd --reload
 
 # Add ccnet.conf, seahub_settings.py, seafile.conf
-cd
-git clone "https://github.com/Max33270/Projet-Infra-SI"
 mv Projet-Infra-SI/seafile-data.zip /opt/seafile/
 mv Projet-Infra-SI/seahub.zip /opt/seafile/
 mv Projet-Infra-SI/conf.zip /opt/seafile/
