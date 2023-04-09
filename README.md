@@ -22,10 +22,6 @@ $ pip3 install --upgrade pip
 $ sudo pip3 install --timeout=3600 django==3.2.* Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \ django-pylibmc django-simple-captcha python3-ldap pycryptodome==3.12.0 cffi==1.14.0 lxml
 
 $ sudo dnf install -y zip
-
-$ sudo dnf install netdata -y
-
-$ sudo dnf install stress-ng
 ```
 
 ### 2. Configuration
@@ -207,6 +203,51 @@ $ cd linpeas/
 $ curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh | sh
 $ sh linpeas.sh
 ```
+
+```
+$ sudo systemctl start netdata
+$ sudo systemctl enable netdata
+$ sudo firewall-cmd --add-port=19999/tcp --permanent
+$ sudo firewall-cmd --reload
+```
+
+```
+$ sudo nano /etc/netdata/health_alarm_notify.conf
+
+# sending discord notifications
+
+# note: multiple recipients can be given like this:
+#                  "CHANNEL1 CHANNEL2 ..."
+
+# enable/disable sending discord notifications
+SEND_DISCORD="YES"
+
+# Create a webhook by following the official documentation -
+# https://support.discordapp.com/hc/en-us/articles/228383668-Intro-to-Webhooks
+DISCORD_WEBHOOK_URL="https://discord.com/api/webhooks/1093469501800071218/iXJHaZ4NIbQxPSmFo3w9gK3P85OUTdj77FNJbNYLn-cNPRPBl_Dj0MeI5E-8Ou4UlJhW">
+
+# if a role's recipients are not configured, a notification will be send to
+# this discord channel (empty = do not send a notification for unconfigured
+# roles):
+DEFAULT_RECIPIENT_DISCORD="general"
+```
+
+```
+$ sudo nano /etc/netdata/health.d/cpu_usage.conf
+alarm: cpu_usage
+on: system.cpu
+lookup: average -3s percentage foreach user, system
+units: %
+every: 10s
+warn: $this > 50
+crit: $this > 80
+info: CPU utilization of users on the system itself.
+```
+
+```
+$ sudo systemctl restart netdata
+```
+
 
 ## 🖥 Seafile Database 
 
