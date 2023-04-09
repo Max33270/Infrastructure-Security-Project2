@@ -199,14 +199,14 @@ $ cd
 zip -r seafile_static /opt/seafile/seafile-server-latest/seahub/
 ```
 
-```
+```bash
 $ mkdir linpeas
 $ cd linpeas/
 $ curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh | sh
 $ sh linpeas.sh
 ```
 
-```
+```bash
 $ sudo systemctl start netdata
 $ sudo systemctl enable netdata
 $ sudo ss -alnpt
@@ -216,7 +216,7 @@ $ sudo firewall-cmd --add-port=19999/tcp --permanent
 $ sudo firewall-cmd --reload
 ```
 
-```
+```bash
 $ sudo nano /etc/netdata/health_alarm_notify.conf
 
 # sending discord notifications
@@ -237,7 +237,7 @@ DISCORD_WEBHOOK_URL="https://discord.com/api/webhooks/1093469501800071218/iXJHaZ
 DEFAULT_RECIPIENT_DISCORD="general"
 ```
 
-```
+```bash
 $ sudo nano /etc/netdata/health.d/cpu_usage.conf
 alarm: cpu_usage
 on: system.cpu
@@ -249,7 +249,7 @@ crit: $this > 80
 info: CPU utilization of users on the system itself.
 ```
 
-```
+```bash
 $ sudo systemctl restart netdata
 ```
 
@@ -409,7 +409,7 @@ $ sudo firewall-cmd --reload
 $ sudo systemctl restart nginx
 ```
 
-```
+```bash
 $ sudo mkdir /var/www
 $ sudo mkdir /var/www/seafile
 $ cd /var/www/
