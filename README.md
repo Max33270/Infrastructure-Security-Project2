@@ -1,6 +1,6 @@
 # Projet Infra/SI - Latorre Audran & Doublait Maxim B2B
 
-## 🖥 Seafile Server 
+## 🖥 Seafile Server - 10.104.1.20
 
 ### 1. Installations
 
@@ -254,7 +254,7 @@ $ sudo systemctl restart netdata
 ```
 
 
-## 🖥 Seafile Database 
+## 🖥 Seafile Database - 10.104.1.21
 
 ### 1. Installations
 
@@ -306,7 +306,7 @@ MariaDB [(none)]> flush privileges;
 MariaDB [(none)]> exit
 ```
 
-## 🖥 Seafile Reverse Proxy 
+## 🖥 Seafile Reverse Proxy - 10.104.1.22
 
 ### 1. Installations
 
