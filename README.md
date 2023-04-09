@@ -251,8 +251,9 @@ info: CPU utilization of users on the system itself.
 
 ```bash
 $ sudo systemctl restart netdata
+$ sudo -u seafile ./seafile.sh restart
+$ sudo -u seafile ./seahub.sh restart
 ```
-
 
 ## 🖥 Seafile Database - 10.104.1.21
 
@@ -405,6 +406,7 @@ server {
 
 ```bash
 $ sudo firewall-cmd --add-port=8000/tcp --permanent
+$ sudo firewall-cmd --add-port=8082/tcp --permanent
 $ sudo firewall-cmd --reload
 $ sudo systemctl restart nginx
 ```
