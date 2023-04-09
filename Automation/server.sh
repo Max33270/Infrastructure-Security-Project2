@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Update the package list and upgrade the system
-sudo dnf update && sudo dnf upgrade
+sudo dnf update -y && sudo dnf upgrade -y 
 
 # Install necessary packages
 sudo dnf install epel-release -y
