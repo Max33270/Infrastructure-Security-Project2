@@ -8,7 +8,7 @@ sudo dnf install epel-release -y
 sudo dnf install python39 -y
 sudo dnf install python3-pip -y
 sudo dnf install wget -y
-pip3 install --upgrade pip -y
+pip3 install --upgrade pip 
 sudo pip3 install --timeout=3600 django==3.2.* Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \ django-pylibmc django-simple-captcha python3-ldap pycryptodome==3.12.0 -y 
 sudo dnf install -y git 
 sudo dnf install -y mariadb
@@ -22,6 +22,7 @@ sudo dnf install -y gcc
 sudo dnf install -y nginx 
 sudo dnf install -y zip 
 sudo dnf install -y openssl 
+sudo wget -O /tmp/netdata-kickstart.sh https://my-netdata.io/kickstart.sh && sh /tmp/netdata-kickstart.sh
 
 # Create directory and user for Seafile
 sudo mkdir /opt/seafile
@@ -42,8 +43,9 @@ sudo -u seafile bash seahub.sh start
 sudo -u seafile sed -i "s/^Bind.*/Bind = '0.0.0.0:8080'/" /opt/seafile/conf/gunicorn.conf.py
 sudo -u seafile ./seahub.sh restart
 
-# Firewall 
-sudo firewall-cmd --add-port=8080/tcp --permanent 
+# Firewall
+sudo firewall-cmd --add-port=8000/tcp --permanent
+sudo firewall-cmd --add-port=8082/tcp --permanent
 sudo firewall-cmd --reload
 
 # Add ccnet.conf, seahub_settings.py, seafile.conf
@@ -61,12 +63,15 @@ sudo -u seafile unzip pids.zip
 cd
 zip -r seafile_static /opt/seafile/seafile-server-latest/seahub/
 
-# Firewall
-sudo firewall-cmd --add-port=8000/tcp --permanent
+# Linpeas
+curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh | sh
+
+sudo systemctl start netdata
+sudo systemctl enable netdata
+sudo firewall-cmd --add-port=19999/tcp --permanent
 sudo firewall-cmd --reload
 
-# Linpeas
-mkdir linpeas
-cd linpeas/
-curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh | sh
-sh linpeas.sh
+$ sudo systemctl restart netdata
+$ cd /opt/seafile/seafile-server-9.0.10/ 
+$ sudo -u seafile ./seafile.sh restart
+$ sudo -u seafile ./seahub.sh restart
